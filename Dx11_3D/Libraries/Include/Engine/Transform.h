@@ -4,6 +4,7 @@
 class Transform : public Component
 {
 	using Super = Component;
+
 public:
 	Transform();
 	~Transform();
@@ -24,20 +25,22 @@ public:
 	// World
 	Vec3 GetScale() { return _scale; }
 	void SetScale(const Vec3& scale);
-	Vec3 GetRotation() { return _rotation; }
-	void SetRotation(const Vec3& rotation);
 	Vec3 GetPosition() { return _position; }
 	void SetPosition(const Vec3& position);
+	Vec3 GetRotation() { return _rotation; }
+	void SetRotation(const Vec3& rotation);
 
+	// TransformNormal -> (x, y, z, 0)
 	Vec3 GetRight() { return _matWorld.Right(); }
 	Vec3 GetUp() { return _matWorld.Up(); }
 	Vec3 GetLook() { return _matWorld.Backward(); }
 
+	Matrix GetWorldRotationMatrix();
 	Matrix GetWorldMatrix() { return _matWorld; }
 
 	// °èÃþ °ü°è
 	bool HasParent() { return _parent != nullptr; }
-	
+
 	shared_ptr<Transform> GetParent() { return _parent; }
 	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 
@@ -45,19 +48,21 @@ public:
 	void AddChild(shared_ptr<Transform> child) { _children.push_back(child); }
 
 private:
-	Vec3 _localScale = { 1.f, 1.f, 1.f }; 
+	Vec3 _localScale = { 1.f, 1.f, 1.f };
 	Vec3 _localRotation = { 0.f, 0.f, 0.f };
 	Vec3 _localPosition = { 0.f, 0.f, 0.f };
-
-	// Cache
 	Matrix _matLocal = Matrix::Identity;
 	Matrix _matWorld = Matrix::Identity;
-	
+
+	// Cache
 	Vec3 _scale;
 	Vec3 _rotation;
 	Vec3 _position;
 
-private:
+	Vec3 _right;
+	Vec3 _up;
+	Vec3 _look;
+
 	shared_ptr<Transform> _parent;
 	vector<shared_ptr<Transform>> _children;
 };
