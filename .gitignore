@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+/Dx11_3D/.vs/Dx11_3D
+/Dx11_3D/Intermediate/Debug/_IsIncrementalBuild
+/Dx11_3D/Intermediate/Debug/vc143.pdb
+/Dx11_3D/Intermediate/Debug/vc143.idb
+/Dx11_3D/Intermediate/Debug/Engine.tlog
+/Dx11_3D/Intermediate/Debug/Engine.log
+/Dx11_3D/Intermediate/Debug/Engine.lib.recipe
+/Dx11_3D/Intermediate/Debug/Engine.Build.CppClean.log
+/Dx11_3D/Intermediate/Debug/Client.vcxproj.FileListAbsolute.txt
+/Dx11_3D/Intermediate/Debug/Client.tlog
+/Dx11_3D/Intermediate/Debug/Client.log
+/Dx11_3D/Intermediate/Debug/Client.ilk
+/Dx11_3D/Intermediate/Debug/Client.exe.recipe
+/Dx11_3D/Intermediate/Debug/Client.Build.CppClean.log
