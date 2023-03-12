@@ -23,6 +23,7 @@
     <ClInclude Include="04. CameraDemo.h" />
     <ClInclude Include="05. TextureDemo.h" />
     <ClInclude Include="06. SamplerDemo.h" />
+    <ClInclude Include="07. HeightMapDemo.h" />
     <ClInclude Include="CameraScript.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="pch.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="04. CameraDemo.cpp" />
     <ClCompile Include="05. TextureDemo.cpp" />
     <ClCompile Include="06. SamplerDemo.cpp" />
+    <ClCompile Include="07. HeightMapDemo.cpp" />
     <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -77,6 +79,12 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="..\Shaders\05. Sampler.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\06. Terrain.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
