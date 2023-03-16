@@ -4,7 +4,7 @@ enum class ComponentType : uint8
 {
 	None,
 	Transform,
-	MeshRanderer,
+	MeshRenderer,
 	Camera,
 	Animator,
 	// ......
