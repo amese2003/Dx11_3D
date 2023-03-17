@@ -28,6 +28,7 @@
     <ClInclude Include="09. MeshDemo.h" />
     <ClInclude Include="10. GlobalTestDemo.h" />
     <ClInclude Include="11. DepthStencilBuffer.h" />
+    <ClInclude Include="12. AmbientDemo.h" />
     <ClInclude Include="CameraScript.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="pch.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="09. MeshDemo.cpp" />
     <ClCompile Include="10. GlobalTestDemo.cpp" />
     <ClCompile Include="11. DepthStencilBuffer.cpp" />
+    <ClCompile Include="12. AmbientDemo.cpp" />
     <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -115,6 +117,16 @@
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\09. Lighting_Ambient.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
