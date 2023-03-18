@@ -6,11 +6,30 @@
 #include "CameraScript.h"
 #include "MeshRenderer.h"
 #include "Mesh.h"
+#include "Material.h"
 
 void MaterialDemo::Init()
 {
 	RESOURCES->Init();
 	_shader = make_shared<Shader>(L"13. Lighting.fx");
+
+	// Material
+	{
+		shared_ptr<Material> material = make_shared<Material>();
+		{
+			material->SetShader(_shader);
+		}
+		{
+			auto texture = RESOURCES->Load<Texture>(L"Hoshino", L"..\\Resources\\Texture\\hoshino.png");
+			material->SetDiffuseMap(texture);
+		}
+
+		MaterialDesc& desc = material->GetMaterialDesc();
+		desc.ambient = Vec4(1.f);
+		desc.diffuse = Vec4(1.f);
+
+		RESOURCES->Add<Material>(L"Hoshino", material);
+	}
 
 	// Camera
 	_camera = make_shared<GameObject>();
@@ -23,15 +42,12 @@ void MaterialDemo::Init()
 	_obj->GetOrAddTransform();
 	_obj->AddComponent(make_shared<MeshRenderer>());
 	{
-		_obj->GetMeshRenderer()->SetShader(_shader);
-	}
-	{
 		auto mesh = RESOURCES->Get<Mesh>(L"Sphere");
 		_obj->GetMeshRenderer()->SetMesh(mesh);
 	}
 	{
-		auto texture = RESOURCES->Load<Texture>(L"Hoshino", L"..\\Resources\\Texture\\hoshino.png");
-		_obj->GetMeshRenderer()->SetTexture(texture);
+		auto material = RESOURCES->Get<Material>(L"Hoshino");
+		_obj->GetMeshRenderer()->SetMaterial(material);
 	}
 
 	// Object2
@@ -39,15 +55,16 @@ void MaterialDemo::Init()
 	_obj2->GetOrAddTransform()->SetPosition(Vec3{ 0.5f, 0.f, 2.f });
 	_obj2->AddComponent(make_shared<MeshRenderer>());
 	{
-		_obj2->GetMeshRenderer()->SetShader(_shader);
-	}
-	{
 		auto mesh = RESOURCES->Get<Mesh>(L"Cube");
 		_obj2->GetMeshRenderer()->SetMesh(mesh);
 	}
 	{
-		auto texture = RESOURCES->Load<Texture>(L"Hoshino", L"..\\Resources\\Texture\\hoshino.png");
-		_obj2->GetMeshRenderer()->SetTexture(texture);
+		auto material = RESOURCES->Get<Material>(L"Hoshino")->Clone();
+		MaterialDesc& desc = material->GetMaterialDesc();
+		desc.ambient = Vec4(1.f);
+		desc.diffuse = Vec4(1.f);
+
+		_obj2->GetMeshRenderer()->SetMaterial(material);
 	}
 
 	RENDER->Init(_shader);
