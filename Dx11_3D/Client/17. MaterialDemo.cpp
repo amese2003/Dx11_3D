@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "16. LightingDemo.h"
+#include "17. MaterialDemo.h"
 #include "GeometryHelper.h"
 #include "Camera.h"
 #include "GameObject.h"
@@ -7,7 +7,7 @@
 #include "MeshRenderer.h"
 #include "Mesh.h"
 
-void LightingDemo::Init()
+void MaterialDemo::Init()
 {
 	RESOURCES->Init();
 	_shader = make_shared<Shader>(L"13. Lighting.fx");
@@ -53,7 +53,7 @@ void LightingDemo::Init()
 	RENDER->Init(_shader);
 }
 
-void LightingDemo::Update()
+void MaterialDemo::Update()
 {
 	_camera->Update();
 	RENDER->Update();
@@ -92,7 +92,7 @@ void LightingDemo::Update()
 	}
 }
 
-void LightingDemo::Render()
+void MaterialDemo::Render()
 {
 
 }
