@@ -7,7 +7,7 @@ void RectangleDemo::Init()
 	_shader = make_shared<Shader>(L"02. Rectangle.fx");
 
 	_geometry = make_shared<Geometry<VertexColorData>>();
-	GeometryHelper::CreateRectangle(_geometry, Color(1.f, 0.f, 0.f, 1.f));
+	//GeometryHelper::CreateRectangle(_geometry, Color(1.f, 0.f, 0.f, 1.f));
 
 	_vertexBuffer = make_shared<VertexBuffer>();
 	_vertexBuffer->Create(_geometry->GetVertices());
