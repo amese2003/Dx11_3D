@@ -35,6 +35,11 @@ using namespace Microsoft::WRL;
 
 #include <FX11/d3dx11effect.h>
 
+// Assimp
+#include <Assimp/Importer.hpp>
+#include <Assimp/scene.h>
+#include <Assimp/postprocess.h>
+
 // Libs
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
