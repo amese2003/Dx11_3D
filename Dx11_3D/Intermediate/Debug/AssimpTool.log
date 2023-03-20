@@ -1,2 +1,13 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: 중간 디렉터리(D:\Project\Dx11_3D\Dx11_3D\Intermediate\Debug\)에 다른 프로젝트(Client.vcxproj, Engine.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  AssimpTool.cpp
+  Converter.cpp
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(6,1): warning C4099: 'asBone': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(5,8): message : 'asBone' 선언을 참조하십시오.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(14,1): warning C4099: 'asMesh': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(13,8): message : 'asMesh' 선언을 참조하십시오.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(25,1): warning C4099: 'asMaterial': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\AsTypes.h(24,8): message : 'asMaterial' 선언을 참조하십시오.
+D:\Project\Dx11_3D\Dx11_3D\Tools\AssimpTool\Converter.cpp(66,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Main.cpp
+  코드를 생성하고 있습니다...
   AssimpTool.vcxproj -> D:\Project\Dx11_3D\Dx11_3D\Binaries\AssimpTool.exe

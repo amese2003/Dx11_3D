@@ -19,6 +19,14 @@ bool Utils::StartsWith(wstring str, wstring comp)
 	return false;
 }
 
+void Utils::Replace(OUT string& str, string comp, string rep)
+{
+}
+
+void Utils::Replace(OUT wstring& str, wstring comp, wstring rep)
+{
+}
+
 std::wstring Utils::ToWString(string value)
 {
 	return wstring(value.begin(), value.end());
