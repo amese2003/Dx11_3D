@@ -15,6 +15,7 @@ public:
 
 public:
 	Shader(wstring file);
+	Shader(wstring file, bool assimp);
 	~Shader();
 
 	wstring GetFile() { return _file; }

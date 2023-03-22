@@ -8,7 +8,6 @@ struct GlobalDesc
 	Matrix V = Matrix::Identity;
 	Matrix P = Matrix::Identity;
 	Matrix VP = Matrix::Identity;
-	Matrix VInv = Matrix::Identity;
 };
 
 struct TransformDesc
@@ -16,6 +15,7 @@ struct TransformDesc
 	Matrix W = Matrix::Identity;
 };
 
+// Light
 struct LightDesc
 {
 	Color ambient = Color(1.f, 1.f, 1.f, 1.f);
@@ -35,6 +35,9 @@ struct MaterialDesc
 	Color emissive = Color(0.f, 0.f, 0.f, 1.f);
 };
 
+// Bone
+#define MAX_MODEL_TRANSFORMS 50
+
 
 class RenderManager
 {
@@ -46,7 +49,6 @@ public:
 
 	void PushGlobalData(const Matrix& view, const Matrix& projection);
 	void PushTransformData(const TransformDesc& desc);
-
 	void PushLightData(const LightDesc& desc);
 	void PushMaterialData(const MaterialDesc& desc);
 

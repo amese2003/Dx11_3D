@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Shader.h"
 #include "Utils.h"
+#include <algorithm>
 
 Shader::Shader(wstring file) : _file(L"..\\Shaders\\" + file)
 {
@@ -14,9 +15,21 @@ Shader::Shader(wstring file) : _file(L"..\\Shaders\\" + file)
 	CreateEffect();
 }
 
+Shader::Shader(wstring file, bool assimp) : _file(L"..\\..\\Shaders\\" + file)
+{
+	_initialStateBlock = make_shared<StateBlock>();
+	{
+		DC->RSGetState(_initialStateBlock->RSRasterizerState.GetAddressOf());
+		DC->OMGetBlendState(_initialStateBlock->OMBlendState.GetAddressOf(), _initialStateBlock->OMBlendFactor, &_initialStateBlock->OMSampleMask);
+		DC->OMGetDepthStencilState(_initialStateBlock->OMDepthStencilState.GetAddressOf(), &_initialStateBlock->OMStencilRef);
+	}
+
+	CreateEffect();
+}
+
 Shader::~Shader()
 {
-	
+
 }
 
 void Shader::CreateEffect()
@@ -297,13 +310,13 @@ ShaderDesc ShaderManager::GetEffect(wstring fileName)
 		ComPtr<ID3DX11Effect> effect;
 		hr = ::D3DX11CreateEffectFromMemory(blob->GetBufferPointer(), blob->GetBufferSize(), 0, DEVICE.Get(), effect.GetAddressOf());
 		CHECK(hr);
-		
-		shaders[fileName] = ShaderDesc{blob, effect};
+
+		shaders[fileName] = ShaderDesc{ blob, effect };
 	}
-	
+
 	ShaderDesc desc = shaders.at(fileName);
 	ComPtr<ID3DX11Effect> effect;
 	desc.effect->CloneEffect(D3DX11_EFFECT_CLONE_FORCE_NONSINGLE, effect.GetAddressOf());
 
-	return ShaderDesc{desc.blob, effect};
+	return ShaderDesc{ desc.blob, effect };
 }

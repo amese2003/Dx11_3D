@@ -1,5 +1,6 @@
 #pragma once
 #include "ResourceBase.h"
+
 class Material : public ResourceBase
 {
 	using Super = ResourceBase;
@@ -15,7 +16,6 @@ public:
 	shared_ptr<Texture> GetSpecularMap() { return _specularMap; }
 
 	void SetShader(shared_ptr<Shader> shader);
-
 	void SetDiffuseMap(shared_ptr<Texture> diffuseMap) { _diffuseMap = diffuseMap; }
 	void SetNormalMap(shared_ptr<Texture> normalMap) { _normalMap = normalMap; }
 	void SetSpecularMap(shared_ptr<Texture> specularMap) { _specularMap = specularMap; }
@@ -26,6 +26,7 @@ public:
 
 private:
 	friend class MeshRenderer;
+
 	MaterialDesc _desc;
 
 	shared_ptr<Shader> _shader;

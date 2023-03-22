@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "RenderManager.h"
 #include "Camera.h"
+#include "Shader.h"
 
 void RenderManager::Init(shared_ptr<Shader> shader)
 {
@@ -33,7 +34,6 @@ void RenderManager::PushGlobalData(const Matrix& view, const Matrix& projection)
 	_globalDesc.V = view;
 	_globalDesc.P = projection;
 	_globalDesc.VP = view * projection;
-	_globalDesc.VInv = view.Invert();
 	_globalBuffer->CopyData(_globalDesc);
 	_globalEffectBuffer->SetConstantBuffer(_globalBuffer->GetComPtr().Get());
 }
