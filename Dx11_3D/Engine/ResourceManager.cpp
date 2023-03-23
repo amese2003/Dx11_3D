@@ -3,7 +3,6 @@
 #include "Texture.h"
 #include "Shader.h"
 #include "Mesh.h"
-#include "Texture.h"
 #include <filesystem>
 
 void ResourceManager::Init()
@@ -17,6 +16,8 @@ std::shared_ptr<Texture> ResourceManager::GetOrAddTexture(const wstring& key, co
 
 	if (filesystem::exists(filesystem::path(path)) == false)
 		return nullptr;
+
+	texture = Load<Texture>(key, path);
 
 	if (texture == nullptr)
 	{

@@ -5,6 +5,7 @@ enum class ComponentType : uint8
 	None,
 	Transform,
 	MeshRenderer,
+	ModelRenderer,
 	Camera,
 	Animator,
 	// ......

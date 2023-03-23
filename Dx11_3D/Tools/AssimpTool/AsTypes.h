@@ -32,4 +32,3 @@ struct asMaterial
 	string specularFile;
 	string normalFile;
 };
-

@@ -3,7 +3,7 @@
 enum FileMode : uint8
 {
 	Write,
-	Read,	
+	Read
 };
 
 class FileUtils
@@ -14,12 +14,14 @@ public:
 
 	void Open(wstring filePath, FileMode mode);
 
+
 	template<typename T>
 	void Write(const T& data)
 	{
 		DWORD numOfBytes = 0;
 		assert(::WriteFile(_handle, &data, sizeof(T), (LPDWORD)&numOfBytes, nullptr));
 	}
+
 
 	template<>
 	void Write<string>(const string& data)
@@ -50,5 +52,5 @@ public:
 
 private:
 	HANDLE _handle = INVALID_HANDLE_VALUE;
-	DWORD _size = 0;
 };
+

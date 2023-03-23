@@ -1,8 +1,5 @@
 #pragma once
-
-class asBone;
-class asMesh;
-class asMaterial;
+#include "AsTypes.h"
 
 class Converter
 {
@@ -36,7 +33,7 @@ private:
 
 private:
 	vector<shared_ptr<asBone>> _bones;
-	vector<shared_ptr<asMesh>> _meshs;
+	vector<shared_ptr<asMesh>> _meshes;
 	vector<shared_ptr<asMaterial>> _materials;
 };
 

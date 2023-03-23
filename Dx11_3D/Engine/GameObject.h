@@ -1,12 +1,11 @@
 #pragma once
-
+#include "Component.h"
 class MonoBehaviour;
 class Transform;
 class Camera;
 class MeshRenderer;
 class ModelRenderer;
-class Animator;
-class Component;
+//class Animator;
 
 class GameObject : public enable_shared_from_this<GameObject>
 {
@@ -30,17 +29,8 @@ public:
 	shared_ptr<Transform> GetOrAddTransform();
 	void AddComponent(shared_ptr<Component> component);
 
-
-private:
-	ComPtr<ID3D11Device> _device;
-	ComPtr<ID3D11DeviceContext> _deviceContext;
-
-
-
-
 protected:
 	array<shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
-	vector<shared_ptr<Component>> _scripts;
-
+	vector<shared_ptr<MonoBehaviour>> _scripts;
 };
 

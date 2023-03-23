@@ -2,16 +2,18 @@
 #include "Converter.h"
 #include <filesystem>
 #include "Utils.h"
-#include "AsTypes.h"
 #include "tinyxml2.h"
+#include "FileUtils.h"
 
 Converter::Converter()
 {
 	_importer = make_shared<Assimp::Importer>();
+
 }
 
 Converter::~Converter()
 {
+
 }
 
 void Converter::ReadAssetFile(wstring file)
@@ -21,31 +23,30 @@ void Converter::ReadAssetFile(wstring file)
 	auto p = std::filesystem::path(fileStr);
 	assert(std::filesystem::exists(p));
 
-	_scene = _importer->ReadFile
-	(
+	_scene = _importer->ReadFile(
 		Utils::ToString(fileStr),
-		aiProcess_ConvertToLeftHanded
-		| aiProcess_Triangulate
-		| aiProcess_GenUVCoords
-		| aiProcess_GenNormals
-		| aiProcess_CalcTangentSpace
+		aiProcess_ConvertToLeftHanded |
+		aiProcess_Triangulate |
+		aiProcess_GenUVCoords |
+		aiProcess_GenNormals |
+		aiProcess_CalcTangentSpace
 	);
+
 	assert(_scene != nullptr);
 }
 
 void Converter::ExportModelData(wstring savePath)
 {
-	wstring filestr = _modelPath + savePath + L".mesh";
+	wstring finalPath = _modelPath + savePath + L".mesh";
 	ReadModelData(_scene->mRootNode, -1, -1);
-	WriteModelFile(filestr);
+	WriteModelFile(finalPath);
 }
 
 void Converter::ExportMaterialData(wstring savePath)
 {
-	wstring finalstr = _texturePath + savePath + L".xml";
+	wstring finalPath = _texturePath + savePath + L".xml";
 	ReadMaterialData();
-	WriteMaterialData(finalstr);
-
+	WriteMaterialData(finalPath);
 }
 
 void Converter::ReadModelData(aiNode* node, int32 index, int32 parent)
@@ -55,39 +56,32 @@ void Converter::ReadModelData(aiNode* node, int32 index, int32 parent)
 	bone->parent = parent;
 	bone->name = node->mName.C_Str();
 
-
 	// Relative Transform
 	Matrix transform(node->mTransformation[0]);
 	bone->transform = transform.Transpose();
 
-
+	// 2) Root (Local)
 	Matrix matParent = Matrix::Identity;
 	if (parent >= 0)
-	{
 		matParent = _bones[parent]->transform;
-	}
+
 	// Local (Root) Transform
 	bone->transform = bone->transform * matParent;
+
 	_bones.push_back(bone);
 
 	// Mesh
 	ReadMeshData(node, index);
 
-
-	// 재귀함수
+	// 재귀 함수
 	for (uint32 i = 0; i < node->mNumChildren; i++)
-	{
 		ReadModelData(node->mChildren[i], _bones.size(), index);
-	}
-
 }
 
 void Converter::ReadMeshData(aiNode* node, int32 bone)
 {
 	if (node->mNumMeshes < 1)
-	{
 		return;
-	}
 
 	shared_ptr<asMesh> mesh = make_shared<asMesh>();
 	mesh->name = node->mName.C_Str();
@@ -95,10 +89,13 @@ void Converter::ReadMeshData(aiNode* node, int32 bone)
 
 	for (uint32 i = 0; i < node->mNumMeshes; i++)
 	{
-		uint32 index =  node->mMeshes[i];
+		uint32 index = node->mMeshes[i];
 		const aiMesh* srcMesh = _scene->mMeshes[index];
 
-		// 통합해서 관리하기 위함
+		// Material Name
+		const aiMaterial* material = _scene->mMaterials[srcMesh->mMaterialIndex];
+		mesh->materialName = material->GetName().C_Str();
+
 		const uint32 startVertex = mesh->vertices.size();
 
 		for (uint32 v = 0; v < srcMesh->mNumVertices; v++)
@@ -128,22 +125,55 @@ void Converter::ReadMeshData(aiNode* node, int32 bone)
 		}
 	}
 
-	_meshs.push_back(mesh);
+	_meshes.push_back(mesh);
 }
 
 void Converter::WriteModelFile(wstring finalPath)
 {
+	auto path = filesystem::path(finalPath);
+
+	// 폴더가 없으면 만든다.
+	filesystem::create_directory(path.parent_path());
+
+	shared_ptr<FileUtils> file = make_shared<FileUtils>();
+	file->Open(finalPath, FileMode::Write);
+
+	// Bone Data
+	file->Write<uint32>(_bones.size());
+	for (shared_ptr<asBone>& bone : _bones)
+	{
+		file->Write<int32>(bone->index);
+		file->Write<string>(bone->name);
+		file->Write<int32>(bone->parent);
+		file->Write<Matrix>(bone->transform);
+	}
+
+	// Mesh Data
+	file->Write<uint32>(_meshes.size());
+	for (shared_ptr<asMesh>& meshData : _meshes)
+	{
+		file->Write<string>(meshData->name);
+		file->Write<int32>(meshData->boneIndex);
+		file->Write<string>(meshData->materialName);
+
+		// Vertex Data
+		file->Write<uint32>(meshData->vertices.size());
+		file->Write(&meshData->vertices[0], sizeof(VertexType) * meshData->vertices.size());
+
+		// Index Data
+		file->Write<uint32>(meshData->indices.size());
+		file->Write(&meshData->indices[0], sizeof(uint32) * meshData->indices.size());
+	}
 }
 
 void Converter::ReadMaterialData()
 {
-	for (int32 i = 0; i < _scene->mNumMaterials; i++)
+	for (uint32 i = 0; i < _scene->mNumMaterials; i++)
 	{
 		aiMaterial* srcMaterial = _scene->mMaterials[i];
 
 		shared_ptr<asMaterial> material = make_shared<asMaterial>();
 		material->name = srcMaterial->GetName().C_Str();
-		
 
 		aiColor3D color;
 		// Ambient
@@ -161,7 +191,7 @@ void Converter::ReadMaterialData()
 
 		// Emissive
 		srcMaterial->Get(AI_MATKEY_COLOR_EMISSIVE, color);
-		material->emissive = Color(color.r, color.g, color.b, 1.f);
+		material->emissive = Color(color.r, color.g, color.b, 1.0f);
 
 		aiString file;
 
@@ -185,8 +215,8 @@ void Converter::WriteMaterialData(wstring finalPath)
 {
 	auto path = filesystem::path(finalPath);
 
-	// 폴더가 없으면 만들어라.
-	filesystem::create_directory(path.parent_path());	
+	// 폴더가 없으면 만든다.
+	filesystem::create_directory(path.parent_path());
 
 	string folder = path.parent_path().string();
 
@@ -194,8 +224,8 @@ void Converter::WriteMaterialData(wstring finalPath)
 
 	tinyxml2::XMLDeclaration* decl = document->NewDeclaration();
 	document->LinkEndChild(decl);
-	
-	tinyxml2::XMLElement* root	 = document->NewElement("Materials");
+
+	tinyxml2::XMLElement* root = document->NewElement("Materials");
 	document->LinkEndChild(root);
 
 	for (shared_ptr<asMaterial> material : _materials)
@@ -253,22 +283,21 @@ void Converter::WriteMaterialData(wstring finalPath)
 	document->SaveFile(Utils::ToString(finalPath).c_str());
 }
 
-string Converter::WriteTexture(string saveFolder, string file)
+std::string Converter::WriteTexture(string saveFolder, string file)
 {
 	string fileName = filesystem::path(file).filename().string();
 	string folderName = filesystem::path(saveFolder).filename().string();
 
 	const aiTexture* srcTexture = _scene->GetEmbeddedTexture(file.c_str());
-
 	if (srcTexture)
 	{
 		string pathStr = saveFolder + fileName;
 
-		if (srcTexture->mHeight)
+		if (srcTexture->mHeight == 0)
 		{
-			//shared_ptr<FileUtils> file = make_shared<FileUtils>();
-			//file->Open(Utils::ToWString(pathStr), FileMode::Write);
-			//file->Write(srcTexture->pcData, srcTexture->mWidth);
+			shared_ptr<FileUtils> file = make_shared<FileUtils>();
+			file->Open(Utils::ToWString(pathStr), FileMode::Write);
+			file->Write(srcTexture->pcData, srcTexture->mWidth);
 		}
 		else
 		{
@@ -309,5 +338,5 @@ string Converter::WriteTexture(string saveFolder, string file)
 		::CopyFileA(originStr.c_str(), pathStr.c_str(), false);
 	}
 
-	return "";
+	return fileName;
 }

@@ -1,14 +1,6 @@
 #include "pch.h"
 #include "Main.h"
 #include "Engine/Game.h"
-#include "10. GlobalTestDemo.h"
-#include "11. DepthStencilBuffer.h"
-#include "12. AmbientDemo.h"
-#include "13. DiffuseDemo.h"
-#include "14. SpecularDemo.h"
-#include "15. EmissiveDemo.h"
-#include "16. LightingDemo.h"
-#include "17. MaterialDemo.h"
 #include "18. NormalMappingDemo.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)

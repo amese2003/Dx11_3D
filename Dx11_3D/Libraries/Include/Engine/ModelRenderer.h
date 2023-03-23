@@ -19,7 +19,7 @@ public:
 	void SetPass(uint8 pass) { _pass = pass; }
 
 private:
-	shared_ptr<Shader>	_shader; 
+	shared_ptr<Shader>	_shader;
 	uint8				_pass = 0;
 	shared_ptr<Model>	_model;
 };
