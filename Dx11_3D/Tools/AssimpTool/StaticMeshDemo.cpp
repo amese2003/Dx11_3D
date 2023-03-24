@@ -21,8 +21,8 @@ void StaticMeshDemo::Init()
 	_camera->AddComponent(make_shared<Camera>());
 	_camera->AddComponent(make_shared<CameraScript>());
 
-	CreateTower();
-	//CreateTank();
+	//CreateTower();
+	CreateTank();
 
 	RENDER->Init(_shader);
 }
@@ -65,7 +65,7 @@ void StaticMeshDemo::CreateTower()
 	_obj->AddComponent(make_shared<ModelRenderer>(_shader));
 	{
 		_obj->GetModelRenderer()->SetModel(m1);
-		//_obj->GetModelRenderer()->SetPass(1);
+		_obj->GetModelRenderer()->SetPass(1);
 	}
 }
 

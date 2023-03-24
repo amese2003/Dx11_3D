@@ -8,6 +8,7 @@ d:\project\dx11_3d\dx11_3d\intermediate\debug\converter.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\camerascript.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\astypes.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imguidemo.obj
 d:\project\dx11_3d\dx11_3d\binaries\assimptool.exe
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.ilk
 d:\project\dx11_3d\dx11_3d\binaries\assimptool.pdb
@@ -22,6 +23,13 @@ d:\project\dx11_3d\dx11_3d\intermediate\debug\geometry.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\geometryhelper.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\graphics.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\iexecute.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_demo.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_draw.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_impl_dx11.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_impl_win32.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_tables.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\imgui_widgets.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\indexbuffer.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\inputmanager.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\material.obj

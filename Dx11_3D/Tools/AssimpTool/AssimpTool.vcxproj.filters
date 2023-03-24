@@ -33,6 +33,9 @@
     <ClCompile Include="StaticMeshDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="ImGUIDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -54,6 +57,9 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="StaticMeshDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUIDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
