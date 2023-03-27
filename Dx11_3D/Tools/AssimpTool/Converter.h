@@ -15,7 +15,11 @@ public:
 private:
 	void ReadModelData(aiNode* node, int32 index, int32 parent);
 	void ReadMeshData(aiNode* node, int32 bone);
+	void ReadSkinData();
 	void WriteModelFile(wstring finalPath);
+
+private:
+	uint32 GetBoneIndex(const string& name);
 
 private:
 	void ReadMaterialData();
