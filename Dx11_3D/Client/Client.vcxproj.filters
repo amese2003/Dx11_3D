@@ -31,6 +31,9 @@
     <Filter Include="Shaders\Week3">
       <UniqueIdentifier>{549be67c-c027-429c-8206-52f94b9e6f65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Week4">
+      <UniqueIdentifier>{ace990a0-01c7-4ed2-9373-0ae2ce7bf1e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -111,6 +114,9 @@
     </FxCompile>
     <FxCompile Include="..\Shaders\15. ModelDemo.fx">
       <Filter>Shaders\Week3</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\16. AnimationDemo.fx">
+      <Filter>Shaders\Week4</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ void AssimpTool::Init()
 		converter->ExportMaterialData(L"Kachujin/Kachujin");
 		converter->ExportModelData(L"Kachujin/Kachujin");
 	}
+
 }
 
 void AssimpTool::Update()

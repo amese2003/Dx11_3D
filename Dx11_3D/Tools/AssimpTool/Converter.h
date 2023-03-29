@@ -11,6 +11,7 @@ public:
 	void ReadAssetFile(wstring file);
 	void ExportModelData(wstring savePath);
 	void ExportMaterialData(wstring savePath);
+	void ExportAnimationData(wstring savePath, uint32 index = 0);
 
 private:
 	void ReadModelData(aiNode* node, int32 index, int32 parent);

@@ -84,6 +84,14 @@ void Converter::ExportMaterialData(wstring savePath)
 	WriteMaterialData(finalPath);
 }
 
+void Converter::ExportAnimationData(wstring savePath, uint32 index)
+{
+	/*wstring finalPath = _modelPath + savePath + L".clip";
+	assert(index < _scene->mNumAnimations);
+	shared_ptr<asAnimation> animation = ReadAnimationData(_scene->mAnimations[index]);
+	WriteAnimationData(animation, finalPath);*/
+}
+
 void Converter::ReadModelData(aiNode* node, int32 index, int32 parent)
 {
 	shared_ptr<asBone> bone = make_shared<asBone>();
