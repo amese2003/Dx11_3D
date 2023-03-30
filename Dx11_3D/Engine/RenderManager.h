@@ -80,5 +80,6 @@ private:
 	BoneDesc _boneDesc;
 	shared_ptr<ConstantBuffer<BoneDesc>> _boneBuffer;
 	ComPtr<ID3DX11EffectConstantBuffer> _boneEffectBuffer;
+
 };
 

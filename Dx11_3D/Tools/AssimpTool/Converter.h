@@ -28,6 +28,12 @@ private:
 	string WriteTexture(string saveFolder, string file);
 
 private:
+	shared_ptr<asAnimation> ReadAnimationData(aiAnimation* srcAnimation);
+	shared_ptr<asAnimationNode> ParseAnimationNode(shared_ptr<asAnimation> animation, aiNodeAnim* srcNode);
+	void ReadKeyframeData(shared_ptr<asAnimation> animation, aiNode* srcNode, map<string, shared_ptr<asAnimationNode>>& cache);
+	void WriteAnimationData(shared_ptr<asAnimation> animation, wstring finalPath);
+
+private:
 	wstring _assetPath = L"../../Resources/Assets/";
 	wstring _modelPath = L"../../Resources/Models/";
 	wstring _texturePath = L"../../Resources/Textures/";
