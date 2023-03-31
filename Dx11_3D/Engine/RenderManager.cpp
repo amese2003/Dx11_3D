@@ -77,4 +77,7 @@ void RenderManager::PushBoneData(const BoneDesc& desc)
 
 void RenderManager::PushKeyfrmaeData(const KeyframeDesc& desc)
 {
+	_keyframeDesc = desc;
+	_keyframeBuffer->CopyData(_keyframeDesc);
+	_keyframeEffectBuffer->SetConstantBuffer(_keyframeBuffer->GetComPtr().Get());
 }

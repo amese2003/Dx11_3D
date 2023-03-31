@@ -14,7 +14,7 @@
 void AnimationDemo::Init()
 {
 	RESOURCES->Init();
-	_shader = make_shared<Shader>(L"15. ModelDemo.fx", true);
+	_shader = make_shared<Shader>(L"16. AnimationDemo.fx", true);
 
 	// Camera
 	_camera = make_shared<GameObject>();

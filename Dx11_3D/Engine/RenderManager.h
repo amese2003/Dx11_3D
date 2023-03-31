@@ -47,12 +47,12 @@ struct BoneDesc
 
 struct KeyframeDesc
 {
-	uint32 animIndex = 0;
+	int32 animIndex = 0;
 	uint32 curFrame = 0;
 
 	// TODO
 	uint32 nextFrame = 0;
-	float ration = 0.f;
+	float ratio = 0.f;
 	float sumTime = 0.f;
 	float speed = 1.f;
 	Vec2 padding;
