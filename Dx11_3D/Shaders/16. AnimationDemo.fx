@@ -2,6 +2,23 @@
 #include "00. Light.fx"
 
 #define MAX_MODEL_TRANSFORMS 250
+#define MAX_MODEL_KEYFRAMES 250
+
+struct KeyframeDesc
+{
+	int animIndex;
+	uint currFrame;
+	uint nextFrame;
+	float ratio;
+	float sumTime;
+	float speed;
+	float2 padding;
+};
+
+cbuffer KeyframeBuffer
+{
+	KeyframeDesc Keyframes;
+};
 
 cbuffer BoneBuffer
 {
@@ -9,6 +26,7 @@ cbuffer BoneBuffer
 };
 
 uint BoneIndex;
+Texture2DArray TransformMap;
 
 MeshOutput VS(VertexTextureNormalTangent input)
 {

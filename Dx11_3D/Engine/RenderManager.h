@@ -37,11 +37,25 @@ struct MaterialDesc
 };
 
 // Bone
-#define MAX_BONE_TRANSFORMS 250
+#define MAX_MODEL_TRANSFORMS 250
+#define MAX_MODEL_KEYFRAMES 500
 
 struct BoneDesc
 {
-	Matrix transforms[MAX_BONE_TRANSFORMS];
+	Matrix transforms[MAX_MODEL_TRANSFORMS];
+};
+
+struct KeyframeDesc
+{
+	uint32 animIndex = 0;
+	uint32 curFrame = 0;
+
+	// TODO
+	uint32 nextFrame = 0;
+	float ration = 0.f;
+	float sumTime = 0.f;
+	float speed = 1.f;
+	Vec2 padding;
 };
 
 class RenderManager
@@ -57,6 +71,7 @@ public:
 	void PushLightData(const LightDesc& desc);
 	void PushMaterialData(const MaterialDesc& desc);
 	void PushBoneData(const BoneDesc& desc);
+	void PushKeyfrmaeData(const KeyframeDesc& desc);
 
 private:
 	shared_ptr<Shader> _shader;
@@ -81,5 +96,8 @@ private:
 	shared_ptr<ConstantBuffer<BoneDesc>> _boneBuffer;
 	ComPtr<ID3DX11EffectConstantBuffer> _boneEffectBuffer;
 
+	KeyframeDesc _keyframeDesc;
+	shared_ptr<ConstantBuffer<KeyframeDesc>> _keyframeBuffer;
+	ComPtr<ID3DX11EffectConstantBuffer> _keyframeEffectBuffer;
 };
 

@@ -16,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	desc.width = 800;
 	desc.height = 600;
 	desc.clearColor = Color(0.f, 0.f, 0.f, 1.f);
-	desc.app = make_shared<AssimpTool>();
+	desc.app = make_shared<AnimationDemo>();
 
 	GAME->Run(desc);
 

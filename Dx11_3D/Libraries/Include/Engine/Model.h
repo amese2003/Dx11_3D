@@ -1,5 +1,4 @@
 #pragma once
-#define MAX_MODEL_TRANSFORMS 50
 
 struct ModelBone;
 struct ModelMesh;
