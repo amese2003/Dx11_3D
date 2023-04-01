@@ -4,6 +4,7 @@ d:\project\dx11_3d\dx11_3d\intermediate\debug\vc143.idb
 d:\project\dx11_3d\dx11_3d\intermediate\debug\pch.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\tweendemo.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\staticmeshdemo.obj
+d:\project\dx11_3d\dx11_3d\intermediate\debug\skydemo.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\main.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\imguidemo.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\converter.obj
@@ -14,9 +15,6 @@ d:\project\dx11_3d\dx11_3d\intermediate\debug\animationdemo.obj
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.ilk
 d:\project\dx11_3d\dx11_3d\binaries\assimptool.exe
 d:\project\dx11_3d\dx11_3d\binaries\assimptool.pdb
-d:\project\dx11_3d\dx11_3d\intermediate\debug\18. normalmappingdemo.obj
-d:\project\dx11_3d\dx11_3d\intermediate\debug\client.ilk
-d:\project\dx11_3d\dx11_3d\intermediate\debug\client.pch
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.vcxproj.filelistabsolute.txt
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.tlog\cl.command.1.tlog
 d:\project\dx11_3d\dx11_3d\intermediate\debug\assimptool.tlog\cl.read.1.tlog
