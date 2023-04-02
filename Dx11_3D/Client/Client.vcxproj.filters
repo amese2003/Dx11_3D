@@ -22,12 +22,6 @@
     <Filter Include="Shaders\Week2">
       <UniqueIdentifier>{19e2d62c-97d5-4175-a1a6-dc2a26a24376}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Week2">
-      <UniqueIdentifier>{b1e98d61-6916-46b8-81b2-fc76d31d95c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Week3">
-      <UniqueIdentifier>{b846dc7f-6e09-467e-92b5-3c93849a6006}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders\Week3">
       <UniqueIdentifier>{549be67c-c027-429c-8206-52f94b9e6f65}</UniqueIdentifier>
     </Filter>
@@ -45,9 +39,7 @@
     <ClCompile Include="CameraScript.cpp">
       <Filter>Main\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="18. NormalMappingDemo.cpp">
-      <Filter>Game\Week2</Filter>
-    </ClCompile>
+    <ClCompile Include="InstancingDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -59,9 +51,7 @@
     <ClInclude Include="CameraScript.h">
       <Filter>Main\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="18. NormalMappingDemo.h">
-      <Filter>Game\Week2</Filter>
-    </ClInclude>
+    <ClInclude Include="InstancingDemo.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\Shaders\07. Normal.fx">

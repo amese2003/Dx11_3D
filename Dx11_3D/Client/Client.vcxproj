@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="18. NormalMappingDemo.h" />
     <ClInclude Include="CameraScript.h" />
+    <ClInclude Include="InstancingDemo.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="18. NormalMappingDemo.cpp" />
     <ClCompile Include="CameraScript.cpp" />
+    <ClCompile Include="InstancingDemo.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
