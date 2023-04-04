@@ -23,8 +23,8 @@ public:
 		_gpuWrite = gpuWrite;
 
 		D3D11_BUFFER_DESC desc;
-		ZeroMemory(&desc, sizeof(desc)); 
-		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		ZeroMemory(&desc, sizeof(desc)); \
+			desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		desc.ByteWidth = (uint32)(_stride * _count);
 
 		if (cpuWrite == false && gpuWrite == false)
