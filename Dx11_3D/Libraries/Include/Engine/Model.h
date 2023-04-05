@@ -44,8 +44,8 @@ private:
 	void BindCacheInfo();
 
 private:
-	wstring _modelPath = L"../../Resources/Models/";
-	wstring _texturePath = L"../../Resources/Textures/";
+	wstring _modelPath = L"../Resources/Models/";
+	wstring _texturePath = L"../Resources/Textures/";
 
 private:
 	shared_ptr<ModelBone> _root;
