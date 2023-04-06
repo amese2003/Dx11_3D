@@ -9,7 +9,9 @@ void InstancingManager::Render(vector<shared_ptr<GameObject>>& gameObjects)
 {
 	ClearData();
 
+	RenderMeshRenderer(gameObjects);
 	RenderModelRenderer(gameObjects);
+	RenderAnimRenderer(gameObjects);
 }
 
 void InstancingManager::ClearData()
@@ -88,6 +90,48 @@ void InstancingManager::RenderModelRenderer(vector<shared_ptr<GameObject>>& game
 
 			shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
 			vec[0]->GetModelRenderer()->RenderInstancing(buffer);
+		}
+	}
+}
+
+void InstancingManager::RenderAnimRenderer(vector<shared_ptr<GameObject>>& gameObjects)
+{
+	map<InstanceID, vector<shared_ptr<GameObject>>> cache;
+
+	for (shared_ptr<GameObject>& gameObject : gameObjects)
+	{
+		if (gameObject->GetModelAnimator() == nullptr)
+			continue;
+
+		const InstanceID instanceId = gameObject->GetModelAnimator()->GetInstanceID();
+		cache[instanceId].push_back(gameObject);
+	}
+
+	for (auto& pair : cache)
+	{
+		shared_ptr<InstancedTweenDesc> tweenDesc = make_shared<InstancedTweenDesc>();
+		const vector<shared_ptr<GameObject>>& vec = pair.second;
+
+		{
+			const InstanceID instanceId = pair.first;
+
+			for (int32 i = 0; i < vec.size(); i++)
+			{
+				const shared_ptr<GameObject>& gameObject = vec[i];
+				InstancingData data;
+				data.world = gameObject->GetTransform()->GetWorldMatrix();
+
+				AddData(instanceId, data);
+
+
+				// INSTANCING
+				gameObject->GetModelAnimator()->UpdateTweenData();
+				tweenDesc->tweens[i] = gameObject->GetModelAnimator()->GetTweenDesc();
+			}
+
+			RENDER->PushTweenData(*tweenDesc.get());
+			shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
+			vec[0]->GetModelAnimator()->RenderInstancing(buffer);
 		}
 	}
 }
