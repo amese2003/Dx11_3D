@@ -14,6 +14,8 @@
 #include <map>
 #include <unordered_map>
 #include <algorithm>
+#include <set>
+#include <unordered_set>
 using namespace std;
 
 // WIN
@@ -68,6 +70,7 @@ using namespace Microsoft::WRL;
 #include "RenderManager.h"
 #include "ImGuiManager.h"
 #include "InstancingManager.h"
+#include "SceneManager.h"
 
 // Engine
 #include "VertexData.h"

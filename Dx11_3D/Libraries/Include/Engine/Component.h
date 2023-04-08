@@ -8,6 +8,7 @@ enum class ComponentType : uint8
 	ModelRenderer,
 	Camera,
 	Animator,
+	Light,
 	// ......
 	Script,
 

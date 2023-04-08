@@ -37,7 +37,7 @@ void RenderManager::Init(shared_ptr<Shader> shader)
 
 void RenderManager::Update()
 {
-	PushGlobalData(Camera::S_MatView, Camera::S_MatProjection);
+	
 }
 
 void RenderManager::PushGlobalData(const Matrix& view, const Matrix& projection)
