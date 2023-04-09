@@ -37,6 +37,12 @@
     <Filter Include="98. Utils\ImGUI">
       <UniqueIdentifier>{9b5a46a5-5523-437b-a50f-d4aa6e5d7e2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Compute">
+      <UniqueIdentifier>{d9974e35-1f2d-45a1-aaef-e40220e48800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Compute\Buffer">
+      <UniqueIdentifier>{e487bd65-fe2f-456a-86a0-13df106c6f91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
