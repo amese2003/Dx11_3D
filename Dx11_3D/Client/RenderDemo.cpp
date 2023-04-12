@@ -65,6 +65,36 @@ void RenderDemo::Init()
 		_objs.push_back(obj);
 	}
 
+
+	{
+		shared_ptr<Material> material = make_shared<Material>();
+		material->SetShader(_shader);
+		auto texture = RESOURCES->Load<Texture>(L"Hoshino", L"..\\Resources\\Textures\\Hoshino.png");
+		material->SetDiffuseMap(texture);
+		MaterialDesc& desc = material->GetMaterialDesc();
+		desc.ambient = Vec4(1.f);
+		desc.diffuse = Vec4(1.f);
+		desc.specular = Vec4(1.f);
+		RESOURCES->Add(L"Hoshino", material);
+	}
+
+	for (int32 i = 0; i < 100; i++)
+	{
+		auto obj = make_shared<GameObject>();
+		obj->GetOrAddTransform()->SetLocalPosition(Vec3(rand() % 100, 0, rand() % 100));
+		obj->AddComponent(make_shared<MeshRenderer>());
+		{
+			obj->GetMeshRenderer()->SetMaterial(RESOURCES->Get<Material>(L"Hoshino"));
+		}
+		{
+			auto mesh = RESOURCES->Get<Mesh>(L"Sphere");
+			obj->GetMeshRenderer()->SetMesh(mesh);
+			obj->GetMeshRenderer()->SetPass(0);
+		}
+
+		_objs.push_back(obj);
+	}
+
 	RENDER->Init(_shader);
 }
 

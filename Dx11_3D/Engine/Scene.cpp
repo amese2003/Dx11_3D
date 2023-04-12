@@ -4,6 +4,7 @@
 void Scene::Start()
 {
 	unordered_set<shared_ptr<GameObject>> objects = _objects;
+
 	for (shared_ptr<GameObject> object : objects)
 	{
 		object->Start();
@@ -13,15 +14,22 @@ void Scene::Start()
 void Scene::Update()
 {
 	unordered_set<shared_ptr<GameObject>> objects = _objects;
+
 	for (shared_ptr<GameObject> object : objects)
 	{
 		object->Update();
 	}
+
+	// INSTANCING
+	vector<shared_ptr<GameObject>> temp;
+	temp.insert(temp.end(), objects.begin(), objects.end());
+	INSTANCING->Render(temp);
 }
 
 void Scene::LateUpdate()
 {
 	unordered_set<shared_ptr<GameObject>> objects = _objects;
+
 	for (shared_ptr<GameObject> object : objects)
 	{
 		object->LateUpdate();

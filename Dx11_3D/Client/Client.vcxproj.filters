@@ -51,13 +51,16 @@
     <ClCompile Include="CameraScript.cpp">
       <Filter>Main\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="SceneDemo.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="RawBufferDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="GroupDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureBufferDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,13 +74,16 @@
     <ClInclude Include="CameraScript.h">
       <Filter>Main\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="SceneDemo.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="RawBufferDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="GroupDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureBufferDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
@@ -164,6 +170,9 @@
       <Filter>Shaders\Month4\Week2</Filter>
     </FxCompile>
     <FxCompile Include="..\Shaders\25. GroupDemo.fx">
+      <Filter>Shaders\Month4\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\26. TextureBufferDemo.fx">
       <Filter>Shaders\Month4\Week2</Filter>
     </FxCompile>
   </ItemGroup>
