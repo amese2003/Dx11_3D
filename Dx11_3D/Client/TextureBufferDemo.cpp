@@ -58,7 +58,7 @@ void TextureBufferDemo::Init()
 		desc.ambient = Vec4(1.f);
 		desc.diffuse = Vec4(1.f);
 		desc.specular = Vec4(1.f);
-		RESOURCES->Add(L"Veigar", material);
+		RESOURCES->Add(L"Hoshino", material);
 	}
 
 	for (int32 i = 0; i < 100; i++)
@@ -67,7 +67,7 @@ void TextureBufferDemo::Init()
 		obj->GetOrAddTransform()->SetLocalPosition(Vec3(rand() % 100, 0, rand() % 100));
 		obj->AddComponent(make_shared<MeshRenderer>());
 		{
-			obj->GetMeshRenderer()->SetMaterial(RESOURCES->Get<Material>(L"Veigar"));
+			obj->GetMeshRenderer()->SetMaterial(RESOURCES->Get<Material>(L"Hoshino"));
 		}
 		{
 			auto mesh = RESOURCES->Get<Mesh>(L"Sphere");
@@ -95,7 +95,7 @@ Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TextureBufferDemo::MakeComputeS
 {
 	auto shader = make_shared<Shader>(L"26. TextureBufferDemo.fx");
 
-	auto texture = RESOURCES->Load<Texture>(L"Veigar", L"..\\Resources\\Textures\\veigar.jpg");
+	auto texture = RESOURCES->Load<Texture>(L"Hoshino", L"..\\Resources\\Textures\\Hoshino.png");
 	shared_ptr<TextureBuffer> textureBuffer = make_shared<TextureBuffer>(texture->GetTexture2D());
 
 	shader->GetSRV("Input")->SetResource(textureBuffer->GetSRV().Get());

@@ -25,6 +25,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="RawBufferDemo.h" />
     <ClInclude Include="RenderDemo.h" />
+    <ClInclude Include="StructuredBufferDemo.h" />
     <ClInclude Include="TextureBufferDemo.h" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +38,7 @@
     </ClCompile>
     <ClCompile Include="RawBufferDemo.cpp" />
     <ClCompile Include="RenderDemo.cpp" />
+    <ClCompile Include="StructuredBufferDemo.cpp" />
     <ClCompile Include="TextureBufferDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +297,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="..\Shaders\26. TextureBufferDemo.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\27. StructuredBufferDemo.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
