@@ -46,6 +46,9 @@
     <Filter Include="Game\Week2">
       <UniqueIdentifier>{1035758d-3f03-45d8-b79b-c233d4a25ee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Week3">
+      <UniqueIdentifier>{d51dc8f4-1670-46ce-ab7b-edbd8916f08b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="ViewportDemo.cpp">
       <Filter>Game\Week2</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionDemo.cpp">
+      <Filter>Game\Week3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="ViewportDemo.h">
       <Filter>Game\Week2</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionDemo.h">
+      <Filter>Game\Week3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
