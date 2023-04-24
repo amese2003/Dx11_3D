@@ -19,6 +19,8 @@
 #include "Viewport.h"
 #include "SphereCollider.h"
 #include "Scene.h"
+#include "AABBBoxCollider.h"
+#include "OBBBoxCollider.h"
 
 void CollisionDemo::Init()
 {
@@ -68,7 +70,7 @@ void CollisionDemo::Init()
 	{
 		auto obj = make_shared<GameObject>();
 		//obj->GetOrAddTransform()->SetLocalPosition(Vec3(rand() % 100, 0, rand() % 100));
-		obj->GetOrAddTransform()->SetLocalPosition(Vec3(0.f));
+		obj->GetOrAddTransform()->SetLocalPosition(Vec3(3.f, 0.f, 0.f));
 		obj->AddComponent(make_shared<MeshRenderer>());
 		{
 			obj->GetMeshRenderer()->SetMaterial(RESOURCES->Get<Material>(L"Hoshino"));
@@ -83,6 +85,40 @@ void CollisionDemo::Init()
 			collider->SetRadius(0.5f);
 			obj->AddComponent(collider);
 		}
+
+		obj->AddComponent(make_shared<MoveScript>());
+		CUR_SCENE->Add(obj);
+	}
+
+	{
+		auto obj = make_shared<GameObject>();
+		//obj->GetOrAddTransform()->SetLocalPosition(Vec3(rand() % 100, 0, rand() % 100));
+		obj->GetOrAddTransform()->SetLocalPosition(Vec3(0.f));
+		obj->AddComponent(make_shared<MeshRenderer>());
+		{
+			obj->GetMeshRenderer()->SetMaterial(RESOURCES->Get<Material>(L"Hoshino"));
+		}
+		{
+			auto mesh = RESOURCES->Get<Mesh>(L"Cube");
+			obj->GetMeshRenderer()->SetMesh(mesh);
+			obj->GetMeshRenderer()->SetPass(0);
+		}
+
+		{
+			auto collider = make_shared<AABBBoxCollider>();
+			collider->GetBoundingBox().Extents = Vec3(0.5f);
+			obj->AddComponent(collider);
+		}
+
+		/*{
+			obj->GetOrAddTransform()->SetRotation(Vec3(0, 45, 0));
+
+
+			auto collider = make_shared<OBBBoxCollider>();
+			collider->GetBoundingBox().Extents = Vec3(0.5f);
+			collider->GetBoundingBox().Orientation = Quaternion::CreateFromYawPitchRoll(45, 0, 0);
+;			obj->AddComponent(collider);
+		}*/
 
 		CUR_SCENE->Add(obj);
 	}
@@ -111,4 +147,11 @@ void CollisionDemo::Update()
 void CollisionDemo::Render()
 {
 
+}
+
+void MoveScript::Update()
+{
+	auto pos = GetTransform()->GetPosition();
+	pos.x -= DT * 1.f;
+	GetTransform()->SetPosition(pos);
 }
