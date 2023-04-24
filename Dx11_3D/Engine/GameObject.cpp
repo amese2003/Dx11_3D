@@ -9,6 +9,7 @@
 #include "ModelAnimator.h"
 #include "Light.h"
 #include "BaseCollider.h"
+#include "Terrain.h"
 
 GameObject::GameObject()
 {
@@ -139,11 +140,12 @@ shared_ptr<BaseCollider> GameObject::GetCollider()
 	return static_pointer_cast<BaseCollider>(component);
 }
 
-//std::shared_ptr<Animator> GameObject::GetAnimator()
-//{
-//	shared_ptr<Component> component = GetFixedComponent(ComponentType::Animator);
-//	return static_pointer_cast<Animator>(component);
-//}
+shared_ptr<Terrain> GameObject::GetTerrain()
+{
+	shared_ptr<Component> component = GetFixedComponent(ComponentType::Terrain);
+	return static_pointer_cast<Terrain>(component);
+}
+
 
 std::shared_ptr<Transform> GameObject::GetOrAddTransform()
 {

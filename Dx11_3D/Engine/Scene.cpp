@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "BaseCollider.h"
 #include "Camera.h"
+#include "Terrain.h"
 
 void Scene::Start()
 {
@@ -112,6 +113,26 @@ shared_ptr<GameObject> Scene::Pick(int32 screenX, int32 screenY)
 		}
 	}
 
+	for (auto& gameObject : gameObjects)
+	{
+		if (gameObject->GetTerrain() == nullptr)
+			continue;
+
+		Vec3 pickPos;
+		float distance = 0.f;
+
+		if (gameObject->GetTerrain()->Pick(screenX, screenY, OUT pickPos, OUT distance) == false)
+			continue;
+
+
+		if (distance < minDistance)
+		{
+			minDistance = distance;
+			picked = gameObject;
+		}
+
+	}
+
 	return picked;
 }
 
@@ -140,6 +161,9 @@ void Scene::CheckCollision()
 			}
 		}
 	}
+
+
+	
 
 }
 
