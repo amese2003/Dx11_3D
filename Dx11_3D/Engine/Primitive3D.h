@@ -119,3 +119,15 @@ struct Triangle3D
 
 	
 };
+
+
+
+/*-------------------------
+		Interval3D
+--------------------------*/
+
+struct Interval3D
+{
+	float min;
+	float max;
+};
