@@ -8,6 +8,8 @@ public:
 	virtual void Update();
 	virtual void LateUpdate();
 
+	virtual void Render();
+
 	virtual void Add(shared_ptr<GameObject> object);
 	virtual void Remove(shared_ptr<GameObject> object);
 

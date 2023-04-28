@@ -42,6 +42,15 @@ void Scene::LateUpdate()
 	CheckCollision();
 }
 
+void Scene::Render()
+{
+	for (auto& camera : _cameras)
+	{
+		camera->GetCamera()->SortGameObject();
+		camera->GetCamera()->Render_Forward();
+	}
+}
+
 void Scene::Add(shared_ptr<GameObject> object)
 {
 	_objects.insert(object);
