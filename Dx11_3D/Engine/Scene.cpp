@@ -24,10 +24,6 @@ void Scene::Update()
 		object->Update();
 	}
 
-	// INSTANCING
-	vector<shared_ptr<GameObject>> temp;
-	temp.insert(temp.end(), objects.begin(), objects.end());
-	INSTANCING->Render(temp);
 }
 
 void Scene::LateUpdate()
@@ -75,9 +71,33 @@ void Scene::Remove(shared_ptr<GameObject> object)
 	_lights.erase(object);
 }
 
-shared_ptr<GameObject> Scene::Pick(int32 screenX, int32 screenY)
+std::shared_ptr<GameObject> Scene::GetMainCamera()
 {
-	shared_ptr<Camera> camera = GetCamera()->GetCamera();
+	for (auto& camera : _cameras)
+	{
+		if (camera->GetCamera()->GetProjectionType() == ProjectionType::Perspective)
+			return camera;
+	}
+
+	return nullptr;
+}
+
+std::shared_ptr<GameObject> Scene::GetUICamera()
+{
+	for (auto& camera : _cameras)
+	{
+		if (camera->GetCamera()->GetProjectionType() == ProjectionType::Orthographic)
+			return camera;
+	}
+
+	return nullptr;
+}
+
+
+
+shared_ptr<class GameObject> Scene::Pick(int32 screenX, int32 screenY)
+{
+	shared_ptr<Camera> camera = GetMainCamera()->GetCamera();
 
 	float width = GRAPHICS->GetViewport().GetWidth();
 	float height = GRAPHICS->GetViewport().GetHeight();
@@ -86,7 +106,6 @@ shared_ptr<GameObject> Scene::Pick(int32 screenX, int32 screenY)
 
 	float viewX = (+2.0f * screenX / width - 1.0f) / projectionMatrix(0, 0);
 	float viewY = (-2.0f * screenY / height + 1.0f) / projectionMatrix(1, 1);
-
 
 	Matrix viewMatrix = camera->GetViewMatrix();
 	Matrix viewMatrixInv = viewMatrix.Invert();
@@ -98,17 +117,21 @@ shared_ptr<GameObject> Scene::Pick(int32 screenX, int32 screenY)
 
 	for (auto& gameObject : gameObjects)
 	{
+		if (camera->IsCulled(gameObject->GetLayerIndex()))
+			continue;
 		if (gameObject->GetCollider() == nullptr)
 			continue;
 
-		// ViewSpace에서 Ray 
-		Vec4 rayOrigin = Vec4(0.f, 0.f, 0.f, 1.f);
-		Vec4 rayDir = Vec4(viewX, viewY, 1.0f, 0.f);
+		// ViewSpace에서의 Ray 정의
+		Vec4 rayOrigin = Vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		Vec4 rayDir = Vec4(viewX, viewY, 1.0f, 0.0f);
 
+		// WorldSpace에서의 Ray 정의
 		Vec3 worldRayOrigin = XMVector3TransformCoord(rayOrigin, viewMatrixInv);
 		Vec3 worldRayDir = XMVector3TransformNormal(rayDir, viewMatrixInv);
 		worldRayDir.Normalize();
 
+		// WorldSpace에서 연산
 		Ray ray = Ray(worldRayOrigin, worldRayDir);
 
 		float distance = 0.f;
@@ -129,17 +152,14 @@ shared_ptr<GameObject> Scene::Pick(int32 screenX, int32 screenY)
 
 		Vec3 pickPos;
 		float distance = 0.f;
-
 		if (gameObject->GetTerrain()->Pick(screenX, screenY, OUT pickPos, OUT distance) == false)
 			continue;
-
 
 		if (distance < minDistance)
 		{
 			minDistance = distance;
 			picked = gameObject;
 		}
-
 	}
 
 	return picked;
@@ -157,8 +177,7 @@ void Scene::CheckCollision()
 		colliders.push_back(object->GetCollider());
 	}
 
-
-	// 진짜? 브루트?
+	// BruteForce
 	for (int32 i = 0; i < colliders.size(); i++)
 	{
 		for (int32 j = i + 1; j < colliders.size(); j++)
@@ -170,9 +189,4 @@ void Scene::CheckCollision()
 			}
 		}
 	}
-
-
-	
-
 }
-
