@@ -255,6 +255,9 @@
     <ClInclude Include="BillBoard.h">
       <Filter>06. UI &amp; Effect</Filter>
     </ClInclude>
+    <ClInclude Include="SnowBillBoard.h">
+      <Filter>06. UI &amp; Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -444,6 +447,9 @@
       <Filter>06. UI &amp; Effect</Filter>
     </ClCompile>
     <ClCompile Include="BillBoard.cpp">
+      <Filter>06. UI &amp; Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBillBoard.cpp">
       <Filter>06. UI &amp; Effect</Filter>
     </ClCompile>
   </ItemGroup>

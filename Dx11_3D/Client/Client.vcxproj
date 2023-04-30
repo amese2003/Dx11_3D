@@ -29,6 +29,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="RawBufferDemo.h" />
     <ClInclude Include="RenderDemo.h" />
+    <ClInclude Include="SnowDemo.h" />
     <ClInclude Include="StructuredBufferDemo.h" />
     <ClInclude Include="TextureBufferDemo.h" />
     <ClInclude Include="ViewportDemo.h" />
@@ -47,6 +48,7 @@
     </ClCompile>
     <ClCompile Include="RawBufferDemo.cpp" />
     <ClCompile Include="RenderDemo.cpp" />
+    <ClCompile Include="SnowDemo.cpp" />
     <ClCompile Include="StructuredBufferDemo.cpp" />
     <ClCompile Include="TextureBufferDemo.cpp" />
     <ClCompile Include="ViewportDemo.cpp" />
@@ -327,6 +329,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="..\Shaders\28. BillboardDemo.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\29. SnowBillboard.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>

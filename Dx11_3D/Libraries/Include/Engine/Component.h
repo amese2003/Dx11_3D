@@ -13,6 +13,7 @@ enum class ComponentType : uint8
 	Terrain,
 	Button,
 	Billboard,
+	SnowBillBoard,
 	// ......
 	Script,
 
