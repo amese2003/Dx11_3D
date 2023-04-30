@@ -2,7 +2,7 @@
 #include "Main.h"
 #include "Engine/Game.h"
 #include "TextureBufferDemo.h"
-#include "StructuredBufferDemo.h"
+#include "BillBoardDemo.h"
 #include "ButtonDemo.h"
 #include "OrthographicDemo.h"
 
@@ -16,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	desc.width = 800;
 	desc.height = 600;
 	desc.clearColor = Color(0.f, 0.f, 0.f, 0.f);
-	desc.app = make_shared<ButtonDemo>();
+	desc.app = make_shared<BillBoardDemo>();
 
 	GAME->Run(desc);
 
